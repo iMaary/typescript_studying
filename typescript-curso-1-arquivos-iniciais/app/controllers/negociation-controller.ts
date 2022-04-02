@@ -15,6 +15,7 @@ export class NegociationController {
     const negociation = this.doNegociation();
 
     console.log(negociation);
+    this.cleanForm();
   }
 
   doNegociation() : Negociation {
@@ -25,5 +26,12 @@ export class NegociationController {
     const negociation = new Negociation(date, quantity, value);
 
     return negociation;
+  }
+
+  cleanForm() : void {
+    this.inputDate.value = '';
+    this.inputQuantity.value = '';
+    this.inputValue.value = '';
+    this.inputDate.focus();
   }
 }

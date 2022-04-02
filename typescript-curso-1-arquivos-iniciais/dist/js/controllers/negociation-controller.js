@@ -8,6 +8,7 @@ export class NegociationController {
     adding() {
         const negociation = this.doNegociation();
         console.log(negociation);
+        this.cleanForm();
     }
     doNegociation() {
         const exp = /-/g;
@@ -16,5 +17,11 @@ export class NegociationController {
         const value = parseFloat(this.inputValue.value);
         const negociation = new Negociation(date, quantity, value);
         return negociation;
+    }
+    cleanForm() {
+        this.inputDate.value = '';
+        this.inputQuantity.value = '';
+        this.inputValue.value = '';
+        this.inputDate.focus();
     }
 }
