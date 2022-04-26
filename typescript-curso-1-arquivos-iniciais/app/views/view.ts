@@ -3,7 +3,7 @@ export abstract class View<T> {
   private escape: boolean = false;
 
   constructor(selector: string, escape?: boolean) {
-    this.element = document.querySelector(selector);
+    this.element = document.querySelector(selector) as HTMLInputElement;
     if (escape) this.escape = escape; 
   }
 
