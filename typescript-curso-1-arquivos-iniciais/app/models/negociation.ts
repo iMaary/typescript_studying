@@ -14,4 +14,14 @@ export class Negociation {
   get volume() : number {
     return this.value * this.quantity;
   }
+
+  public static createAt(dateString: string, quantityString: string, valueString: string): Negociation {
+    const exp = /-/g;
+    const date = new Date(dateString.replace(exp, ','));
+    const quantity = parseInt(quantityString);
+    const value = parseFloat(valueString);
+    const negociation = new Negociation(date, quantity, value);
+
+    return negociation;
+  }
 }
