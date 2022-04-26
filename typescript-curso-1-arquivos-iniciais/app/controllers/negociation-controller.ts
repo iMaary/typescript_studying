@@ -20,6 +20,10 @@ export class NegociationController {
   }
 
   public adding() : void {
+    /*
+      did u see that?
+    */
+
     const negociation = Negociation.createAt(
       this.inputDate.value,
       this.inputQuantity.value,
