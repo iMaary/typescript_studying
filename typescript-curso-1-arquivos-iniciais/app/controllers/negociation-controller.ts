@@ -10,6 +10,8 @@ export class NegociationController {
   private negociations = new Negociations();
   private negociationsView = new NegociationsView('#negociationsView');
   private messageView = new MessageView('#messageView');
+  private readonly SATURDAY = 6;
+  private readonly SUNDAY = 0;
 
   constructor() {
     this.inputDate = document.querySelector('#data');
@@ -21,14 +23,17 @@ export class NegociationController {
   public adding() : void {
     const negociation = this.doNegociation();
 
-    if (negociation.date.getDay() > 0 && negociation.date.getDay() < 6) {
-      this.negociations.pushNegociation(negociation);
-      this.cleanForm();
-      this.updateView();
-    }
-    else {
+    if (!this.isWeekday(negociation.date)) {
       this.messageView.update('Negociations on weekdays only!');
+      return;
     }
+    this.negociations.pushNegociation(negociation);
+    this.cleanForm();
+    this.updateView();
+  }
+  
+  private isWeekday(date: Date) {
+    return date.getDay() > this.SUNDAY && date.getDay() < this.SATURDAY;
   }
 
   private doNegociation() : Negociation {
