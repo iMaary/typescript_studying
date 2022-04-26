@@ -21,9 +21,14 @@ export class NegociationController {
   public adding() : void {
     const negociation = this.doNegociation();
 
-    this.negociations.pushNegociation(negociation);
-    this.cleanForm();
-    this.updateView();
+    if (negociation.date.getDay() > 0 && negociation.date.getDay() < 6) {
+      this.negociations.pushNegociation(negociation);
+      this.cleanForm();
+      this.updateView();
+    }
+    else {
+      this.messageView.update('Negociations on weekdays only!');
+    }
   }
 
   private doNegociation() : Negociation {
