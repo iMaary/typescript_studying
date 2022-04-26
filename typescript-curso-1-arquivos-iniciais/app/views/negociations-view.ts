@@ -1,11 +1,7 @@
 import { Negociations } from "../models/negociations.js";
+import { View } from "./view.js";
 
-export class NegociationsView {
-  private element : HTMLInputElement;
-
-  constructor(selector : string) {
-    this.element = document.querySelector(selector);
-  }
+export class NegociationsView extends View<Negociations> {
 
   template(model : Negociations) : string {
     return `
