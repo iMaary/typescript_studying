@@ -1,3 +1,4 @@
+import { inspect } from "../decorators/inspect.js";
 import { loginExecutionTime } from "../decorators/login-execution-time.js";
 
 export abstract class View<T> {
@@ -14,6 +15,7 @@ export abstract class View<T> {
   }
 
   @loginExecutionTime(true)
+  @inspect()
   public update(model : T) : void {
     let template = this.template(model);
     if (this.escape) template = template.replace(/<script>[\s\S]*?<\/script>/, '');
