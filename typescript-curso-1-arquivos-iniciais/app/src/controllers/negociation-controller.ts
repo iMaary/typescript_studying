@@ -1,3 +1,4 @@
+import { loginExecutionTime } from "../decorators/login-execution-time.js";
 import { WeekDays } from "../enums/seven-days.js";
 import { Negociation } from "../models/negociation.js";
 import { Negociations } from "../models/negociations.js";
@@ -19,11 +20,8 @@ export class NegociationController {
     this.negociationsView.update(this.negociations);
   }
 
+  @loginExecutionTime()
   public adding() : void {
-    /*
-      did u see that?
-    */
-
     const negociation = Negociation.createAt(
       this.inputDate.value,
       this.inputQuantity.value,
