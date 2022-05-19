@@ -1,6 +1,3 @@
-import { inspect } from "../decorators/inspect.js";
-import { loginExecutionTime } from "../decorators/login-execution-time.js";
-
 export abstract class View<T> {
   protected element: HTMLElement;
 
@@ -11,8 +8,6 @@ export abstract class View<T> {
     else throw Error(`${selector} selector doesn't exists in DOM`);
   }
 
-  @loginExecutionTime(true)
-  @inspect
   public update(model : T) : void {
     let template = this.template(model);
     this.element.innerHTML = template;
