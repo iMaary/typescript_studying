@@ -43,6 +43,10 @@ export class NegociationController {
     this.updateView();
   }
   
+  importData(): void {
+    alert('oi');
+  }
+
   private isWeekday(date: Date) {
     return date.getDay() > WeekDays.SUNDAY && date.getDay() < WeekDays.SATURDAY;
   }

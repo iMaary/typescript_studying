@@ -11,3 +11,14 @@ if (form) {
 } else {
   throw Error('It is not possible init the application. Please verify if the form exists');
 }
+
+const buttonImport = document.querySelector('#import-button');
+
+if (buttonImport) {
+  buttonImport.addEventListener('click', () => {
+    controller.importData();
+  });
+
+} else {
+  throw Error('It is not possible to find import button!');
+}
