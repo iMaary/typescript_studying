@@ -1,7 +1,8 @@
+import { Comparable } from "../interfaces/comparable.js";
 import { Printable } from "../utils/printable.js";
 import { Negociation } from "./negociation.js";
 
-export class Negociations implements Printable {
+export class Negociations implements Printable, Comparable<Negociations> {
   private negociations : Negociation[] = [];
 
   public pushNegociation(negociation : Negociation) {
@@ -14,5 +15,9 @@ export class Negociations implements Printable {
 
   public toText(): string {
     return JSON.stringify(this.negociations, null, 2);
+  }
+
+  public isEqual(negociations: Negociations): boolean {
+    return JSON.stringify(this.negociations) === JSON.stringify(negociations.list());
   }
 }
