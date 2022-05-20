@@ -6,7 +6,7 @@ import { Negociation } from "../models/negociation.js";
 import { Negociations } from "../models/negociations.js";
 import { MessageView } from "../views/message-view.js";
 import { NegociationsView } from "../views/negociations-view.js";
-import { CurrentNegociations } from "../interfaces/current-negociations.js";
+import { NegociationsService } from "../services/negociations-service.js";
 
 export class NegociationController {
   @domInjector('#data')
@@ -21,6 +21,7 @@ export class NegociationController {
   private negociations = new Negociations();
   private negociationsView = new NegociationsView('#negociationsView');
   private messageView = new MessageView('#messageView');
+  private negociationsService = new NegociationsService(); 
 
   constructor() {
     this.negociationsView.update(this.negociations);
@@ -45,13 +46,8 @@ export class NegociationController {
   }
   
   public importData(): void {
-    fetch('http://localhost:8080/dados')
-      .then(res => res.json())
-      .then((data: CurrentNegociations[]) => {
-        return data.map(current_data => {
-          return new Negociation(new Date(), current_data.quantity, current_data.amount);
-        });
-      })
+    this.negociationsService
+      .getCurrentNegociations()
       .then(current_negociations => {
         for (let negociation of current_negociations) {
           this.negociations.pushNegociation(negociation);
