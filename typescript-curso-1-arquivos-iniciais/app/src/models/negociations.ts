@@ -1,8 +1,7 @@
-import { Comparable } from "../interfaces/comparable.js";
-import { Printable } from "../utils/printable.js";
+import { Modelio } from "../interfaces/modelio.js";
 import { Negociation } from "./negociation.js";
 
-export class Negociations implements Printable, Comparable<Negociations> {
+export class Negociations implements Modelio<Negociations> {
   private negociations : Negociation[] = [];
 
   public pushNegociation(negociation : Negociation) {

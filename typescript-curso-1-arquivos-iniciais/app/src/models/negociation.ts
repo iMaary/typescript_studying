@@ -1,7 +1,6 @@
-import { Comparable } from "../interfaces/comparable.js";
-import { Printable } from "../utils/printable.js";
+import { Modelio } from "../interfaces/modelio.js";
 
-export class Negociation implements Printable, Comparable<Negociation> {
+export class Negociation implements Modelio<Negociation> {
 
   constructor(
     private readonly _date: Date, 
