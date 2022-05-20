@@ -34,4 +34,10 @@ export class Negociation implements Printable {
       Value: ${this.value}
     `;
   }
+
+  public isEqual(negociation: Negociation): boolean {
+     return this.date.getDate() == negociation.date.getDate()
+              && this.date.getMonth() == negociation.date.getMonth()
+              && this.date.getFullYear() == negociation.date.getFullYear();
+  }
 }
