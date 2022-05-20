@@ -43,8 +43,20 @@ export class NegociationController {
     this.updateView();
   }
   
-  importData(): void {
-    alert('oi');
+  public importData(): void {
+    fetch('http://localhost:8080/dados')
+      .then(res => res.json())
+      .then((data: any[]) => {
+        return data.map(current_data => {
+          return new Negociation(new Date(), current_data.vezes, current_data.montante);
+        });
+      })
+      .then(current_negociations => {
+        for (let negociation of current_negociations) {
+          this.negociations.pushNegociation(negociation);
+        }
+        this.negociationsView.update(this.negociations);
+      });
   }
 
   private isWeekday(date: Date) {
