@@ -1,14 +1,12 @@
 import { Printable } from "../utils/printable.js";
 
-export class Negociation extends Printable {
+export class Negociation implements Printable {
 
   constructor(
     private readonly _date: Date, 
     public readonly quantity: number, 
     public readonly value: number
-  ) {
-    super();
-  }
+  ) {}
 
   public static createAt(dateString: string, quantityString: string, valueString: string): Negociation {
     const exp = /-/g;
