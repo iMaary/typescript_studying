@@ -1,6 +1,7 @@
+import { Printable } from "../utils/printable.js";
 import { Negociation } from "./negociation.js";
 
-export class Negociations {
+export class Negociations extends Printable {
   private negociations : Negociation[] = [];
 
   public pushNegociation(negociation : Negociation) {

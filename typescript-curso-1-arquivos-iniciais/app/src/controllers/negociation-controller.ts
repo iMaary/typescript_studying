@@ -7,6 +7,7 @@ import { Negociations } from "../models/negociations.js";
 import { MessageView } from "../views/message-view.js";
 import { NegociationsView } from "../views/negociations-view.js";
 import { NegociationsService } from "../services/negociations-service.js";
+import { printObject } from "../utils/print-object.js";
 
 export class NegociationController {
   @domInjector('#data')
@@ -42,8 +43,7 @@ export class NegociationController {
     }
     this.negociations.pushNegociation(negociation);
 
-    console.log(negociation.toText());
-    console.log(this.negociations.toText());
+   printObject(negociation, this.negociations);
 
     this.cleanForm();
     this.updateView();
