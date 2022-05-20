@@ -6,6 +6,7 @@ import { Negociation } from "../models/negociation.js";
 import { Negociations } from "../models/negociations.js";
 import { MessageView } from "../views/message-view.js";
 import { NegociationsView } from "../views/negociations-view.js";
+import { CurrentNegociations } from "../interfaces/current-negociations.js";
 
 export class NegociationController {
   @domInjector('#data')
@@ -48,7 +49,7 @@ export class NegociationController {
       .then(res => res.json())
       .then((data: any[]) => {
         return data.map(current_data => {
-          return new Negociation(new Date(), current_data.vezes, current_data.montante);
+          return new Negociation(new Date(), current_data.quantity, current_data.amount);
         });
       })
       .then(current_negociations => {
