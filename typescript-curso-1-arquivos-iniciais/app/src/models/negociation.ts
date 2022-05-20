@@ -6,6 +6,16 @@ export class Negociation {
     public readonly value: number
   ) {}
 
+  public static createAt(dateString: string, quantityString: string, valueString: string): Negociation {
+    const exp = /-/g;
+    const date = new Date(dateString.replace(exp, ','));
+    const quantity = parseInt(quantityString);
+    const value = parseFloat(valueString);
+    const negociation = new Negociation(date, quantity, value);
+
+    return negociation;
+  }
+
   get date() : Date {
     const date = new Date(this._date.getTime());
     return date;
@@ -15,13 +25,11 @@ export class Negociation {
     return this.value * this.quantity;
   }
 
-  public static createAt(dateString: string, quantityString: string, valueString: string): Negociation {
-    const exp = /-/g;
-    const date = new Date(dateString.replace(exp, ','));
-    const quantity = parseInt(quantityString);
-    const value = parseFloat(valueString);
-    const negociation = new Negociation(date, quantity, value);
-
-    return negociation;
+  public toText(): string {
+    return `
+      Date: ${this._date},
+      Quantity: ${this.quantity},
+      Value: ${this.value}
+    `;
   }
 }
