@@ -47,7 +47,7 @@ export class NegociationController {
   public importData(): void {
     fetch('http://localhost:8080/dados')
       .then(res => res.json())
-      .then((data: any[]) => {
+      .then((data: CurrentNegociations[]) => {
         return data.map(current_data => {
           return new Negociation(new Date(), current_data.quantity, current_data.amount);
         });
